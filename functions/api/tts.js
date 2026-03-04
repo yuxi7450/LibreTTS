@@ -1,3 +1,6 @@
+// 导入原项目的 tts 处理函数（Cloudflare 支持 ESM 语法）
+import handler from '../../api/tts.js';
+
 const encoder = new TextEncoder();
 let expiredAt = null;
 let endpoint = null;
