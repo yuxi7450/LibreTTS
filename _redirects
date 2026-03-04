@@ -1,5 +1,4 @@
-# 1. 优先处理 API 请求：转发到 Cloudflare Functions，无循环风险
-/api/*    /api/:splat  200
-
-# 2. 前端路由适配：仅匹配「非文件、非目录」的请求（避免匹配 /index.html）
-/*    /index.html  200  [file=false, directory=false]
+# API请求转发（3个核心token：源 目标 状态码，单个空格分隔）
+/api/* /api/:splat 200
+# 前端路由适配（3个核心token + 1个参数整体，无多余空格）
+/* /index.html 200 [file=false,directory=false]
