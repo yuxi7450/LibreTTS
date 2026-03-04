@@ -1,0 +1,33 @@
+# 该工作流将在创建发布时使用 node 运行测试，然后发布到 GitHub Packages
+# 更多信息请参见：https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+
+名称：Node.js 包
+
+在:
+  发布:
+    类型：[创建]
+
+工作:
+  构建:
+    运行于：ubuntu-latest
+    步骤:
+      - 使用：actions/checkout@v4
+      - 使用：actions/setup-node@v4
+        与：
+          节点版本：20
+      - 运行：npm ci
+      - 运行：npm test
+
+  发布-npm:
+    需要： 构建
+    运行于：ubuntu-latest
+    步骤:
+      - 使用：actions/checkout@v4
+      - 使用：actions/setup-node@v4
+        与：
+          节点版本：20
+          注册网址：https：//registry.npmjs.org/
+      - 运行：npm ci
+      - 运行： npm publish
+        环境:
+          NODE_AUTH_TOKEN：${{secrets.npm_token}}
