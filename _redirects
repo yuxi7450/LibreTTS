@@ -1,0 +1,4 @@
+# Cloudflare Pages 路由规则：所有 /api 开头的请求转发到 Functions
+/api/*    /api/:splat  200
+# 前端路由适配（单页应用）
+/*        /index.html  200
